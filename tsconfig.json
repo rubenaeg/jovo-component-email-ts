@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2017"
+        ],
+        "target": "es2017",
+        "declaration": true,
+        "noImplicitAny": true,
+        "strict": true,
+        "module": "commonjs",
+        "outDir": "dist",
+        "sourceMap": true,
+        "types": [
+            "node"
+        ],
+        "resolveJsonModule": true
+    },
+    "include": [
+        "src/**/*.json",
+        "src/**/*.ts",
+        "*.ts"
+    ]
+}

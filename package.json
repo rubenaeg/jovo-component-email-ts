@@ -1,0 +1,19 @@
+{
+    "name": "jovo-component-email",
+    "private": true,
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "@types/express": "^4.17.0",
+        "@types/jwt-decode": "^2.2.1",
+        "@types/node": "^12.0.8",
+        "jovo-framework": "^2.2.5",
+        "jwt-decode": "^2.2.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+}
