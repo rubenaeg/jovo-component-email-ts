@@ -10,6 +10,8 @@
         "module": "commonjs",
         "outDir": "dist",
         "sourceMap": true,
+        "removeComments": true,
+        "preserveWhitespace": true,
         "types": [
             "node"
         ],

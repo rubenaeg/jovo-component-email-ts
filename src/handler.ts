@@ -9,6 +9,10 @@ interface Data {
     error?: string;
 }
 
+/**
+ * 
+ * @param this 
+ */
 async function START(this: Jovo) {
     const data: Data = {};
     // @ts-ignore
@@ -41,7 +45,7 @@ async function START(this: Jovo) {
                 };
                 this.toStateIntent(this.$components.EMAIL.stateBeforeDelegate, this.$components.EMAIL.onCompletedIntent!);
             } catch (error) {
-                if (error.code === 'ACCESS_DENIED') {
+                if (error.code === 'ACCESS_DENIED' || error.code === 'NO_USER_PERMISSION') {
                     this.$speech.t('component-email-start-contact-permissions');
                     // @ts-ignore
                     this.$alexaSkill.showAskForContactPermissionCard('email')
