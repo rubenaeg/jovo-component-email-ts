@@ -69,7 +69,8 @@ module.exports = {
             alexa: {
                 type: 'contact-permissions|account-linking',
                 // 
-                // If you choose to use account linking in your skill, you  have the option to choose either Login-With-Amazon or Auth0 as a provider.
+                // If you choose to use account linking in your skill, 
+                // you have the option to choose either Login-With-Amazon or Auth0 as a provider.
                 //
                 // accountLinkingProvider: 'login-with-amazon'
                 //
@@ -77,7 +78,8 @@ module.exports = {
                 // uri: 'https://your-profile.auth0.com/userinfo'
             },
             googleAssistant: {
-                // For Google Assistant, as of now, Account Linking is the only option to fetch a users email address. As for Alexa, you have the choice between Auth0 or the platform-specific provider Login-With-Google.
+                // For Google Assistant, as of now, Account Linking is the only option to fetch a users email address. 
+                // As for Alexa, you have the choice between Auth0 or the platform-specific provider Login-With-Google.
                 //
                 accountLinkingProvider: 'login-with-google'
                 //
