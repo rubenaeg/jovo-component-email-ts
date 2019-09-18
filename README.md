@@ -1,35 +1,93 @@
-# Configuration
+# Jovo Conversational Component: GetEmail
 
-This component allows you to fetch the users email address, either with Account Linking (Alexa|Google Assistant) or Contact Permissions (Alexa). 
-Since Alexa allows you both options, you need to choose one in `config.js`:
+## Getting Started
 
-```javascript
-// config.js
+The component provides a prepackaged solution to get your user's email address.
 
-alexa: 'contact-permissions' // account-linking|contact-permissions(default)
+> [Find out more about Jovo's Conversational Components](https://www.jovo.tech/docs/components)
 
-```
-If you decide to choose Account Linking for Alexa or want to get the users email for Google Assistant, you need to create an Auth0 profile,
-which provides you with a User-Profile-Link that you have to set in `config.js`:
+### Installation
 
-```javascript
-// config.js
+You can install the component using npm:
 
-auth0: '' // e.g. https://your-username.auth0.com/userinfo
+```sh
+$ npm install --save jovo-component-get-email
 ```
 
-To activate Contact Permissions for your skill, either set the permissions in your `project.js` or [directly in the Alexa Skill console](https://developer.amazon.com/docs/custom-skills/request-customer-contact-information-for-use-in-your-skill.html#configure-the-skill-to-request-customer-permissions).
+After that, you use the Jovo CLI to transfer the component's files to your project using te `load` command:
+
+```sh
+$ jovo load jovo-component-get-email
+```
+
+Last but not least you have to include the component in your `app.js`:
+
+```js
+// @language=typescript
+// src/app.ts
+
+import { GetEmail } from './components/jovo-component-get-email';
+
+app.useComponents(new GetEmail());
+
+// @language=javascript
+// src/app.js
+
+const { GetEmail } = require("../components/jovo-component-get-email/index");
+
+app.useComponents(new GetEmail());
+```
+
+## Response
+
+The component's `$response` has the following interface:
 
 ```javascript
-// config.js
-
-manifest: {
-    permissions: [
-        {
-            name: "alexa::profile:email:read"
-        }
-    ]
+{
+    status: "SUCCESSFUL" | "REJECTED" | "ERROR",
+    data: {
+        email: "string"
+    }
 }
 ```
 
-You can find tutorials for Account Linking on our website for [Alexa](https://www.jovo.tech/tutorials/alexa-account-linking-auth0) and [Google Assistant](https://www.jovo.tech/tutorials/google-action-account-linking-auth0).
+The `data` property will only be defined, if the component was successful!
+
+> [Find out more about Conversational Component's responses](https://www.jovo.tech/docs/components#response)
+
+## Configuration
+
+The component allows you to fetch the users email address, either with Account Linking (Alexa|GoogleAssistant) or Contact Permissions (Alexa). Based on which one you want to choose, you need to configure the component accordingly.
+
+```js
+// config.js
+
+module.exports = {
+    // ...
+    components: {
+        GetEmailComponent: {
+            alexa: {
+                type: 'contact-permissions|account-linking',
+                // 
+                // If you choose to use account linking in your skill, you  have the option to choose either Login-With-Amazon or Auth0 as a provider.
+                //
+                // accountLinkingProvider: 'login-with-amazon'
+                //
+                // accountLinkingProvider: 'auth0'
+                // uri: 'https://your-profile.auth0.com/userinfo'
+            },
+            googleAssistant: {
+                // For Google Assistant, as of now, Account Linking is the only option to fetch a users email address. As for Alexa, you have the choice between Auth0 or the platform-specific provider Login-With-Google.
+                //
+                accountLinkingProvider: 'login-with-google'
+                //
+                // accountLinkingProvider: 'auth0',
+                // uri: 'https://your-profile.auth0.com/userinfo'
+            }
+        }
+    }
+};
+```
+
+
+> [Find out more about Conversational Component's configuration](https://www.jovo.tech/docs/components#configuration)

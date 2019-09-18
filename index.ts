@@ -1,13 +1,15 @@
-import { Component } from 'jovo-framework';
+import { Handler } from 'jovo-core';
+import { ComponentPlugin } from 'jovo-framework';
 
-export class EMAIL extends Component {
-    handler: { [key: string]: any };
-    config: { [key: string]: any };
-    pathToI18n: string;
-    constructor(config: { [key: string]: any }) {
+import { Config, IGetEmailConfig } from './src/config';
+import { GetEmailHandler } from './src/handler';
+
+export class GetEmail extends ComponentPlugin {
+    handler: Handler = GetEmailHandler;
+    config: IGetEmailConfig = Config;
+    pathToI18n: string = './src/i18n/';
+
+    constructor(config?: IGetEmailConfig) {
         super(config);
-        this.handler = require('./src/handler');
-        this.config = require('./src/config');
-        this.pathToI18n = './src/i18n/';
     }
 }

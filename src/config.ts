@@ -1,4 +1,18 @@
-export = {
+import { ComponentConfig } from 'jovo-framework';
+
+export interface IGetEmailConfig extends ComponentConfig {
+    alexa?: {
+        type: string;
+        accountLinkingProvider?: string;
+        uri?: string;
+    };
+    googleAssistant?: {
+        accountLinkingProvider: string;
+        uri?: string;
+    };
+}
+
+export const Config: IGetEmailConfig = {
     alexa: {
         type: 'contact-permissions',
         //
@@ -15,4 +29,4 @@ export = {
         // accountLinkingProvider: 'auth0',
         // uri: 'https://your-profile.auth0.com/userinfo'
     }
-}
+};
